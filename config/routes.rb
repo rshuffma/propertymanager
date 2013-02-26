@@ -1,4 +1,7 @@
 Propertymanager::Application.routes.draw do
+  resources :roles
+
+
   resources :user_sessions
 
 
@@ -18,7 +21,7 @@ Propertymanager::Application.routes.draw do
   
   root :to => 'users#index'
   
-  match 'login', :to => 'user_session#new'
+  match 'login', :to => 'user_sessions#new'
   match 'logout', :to => 'user_sessions#destroy'
 
 
