@@ -25,11 +25,17 @@
   	<div id="login">
 	  <% if current_user %>
 	
-	  	<%= link_to "Edit Profile", edit_user_path(:current) %>
+	  	<%= link_to "Edit Profile", edit_user_path(current_user) %>
 	 	<%= link_to "Logout", logout_path %>
-	 	<%= link_to "Leases", leases_path %>
-		<%= link_to "Repair Requests", repair_requests_path%>
-	 	 
+		<%= link_to "Repair Requests", repair_requests_path %>
+		<%= link_to "Payment", payments_path %>
+		
+		<% if current_user.has_role? :admin%>
+	 		<%= link_to "Leases", leases_path %>
+	 		<%= link_to "Properties", properties_path %>
+	 		<%= link_to "Units", units_path %> 
+	 	<% end %>
+	 	
 	  <% else %>
 	
 		<%= link_to "Register", new_user_path %>

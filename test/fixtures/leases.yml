@@ -1,11 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  start_date: 2013-02-18
-  end_date: 2013-02-18
+  start_date: 2013-03-08
+  end_date: 2013-03-08
   rent: 1
+  unit_id: 1
+  user_id: 
 
 two:
-  start_date: 2013-02-18
-  end_date: 2013-02-18
+  start_date: 2013-03-08
+  end_date: 2013-03-08
   rent: 1
+  unit_id: 1
+  user_id: 

@@ -1,8 +1,15 @@
 class RepairRequestsController < ApplicationController
+  
+  load_and_authorize_resource
+  
   # GET /repair_requests
   # GET /repair_requests.json
-  def index
-    @repair_requests = RepairRequest.all
+  def index 
+    if current_user.has_role? :customer
+      @repair_requests = RepairRequest.where(:submitter_id => current_user)
+    else
+      @repair_requests = RepairRequest.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,10 +48,12 @@ class RepairRequestsController < ApplicationController
   # POST /repair_requests.json
   def create
     @repair_request = RepairRequest.new(params[:repair_request])
+    
+    @repair_request.submitter = current_user
 
     respond_to do |format|
       if @repair_request.save
-        format.html { redirect_to @repair_request, notice: 'Repair request was successfully created.' }
+        format.html { redirect_to repair_requests_path, notice: 'Repair request was successfully created.' }
         format.json { render json: @repair_request, status: :created, location: @repair_request }
       else
         format.html { render action: "new" }
@@ -57,10 +66,11 @@ class RepairRequestsController < ApplicationController
   # PUT /repair_requests/1.json
   def update
     @repair_request = RepairRequest.find(params[:id])
-
+    @repair_request.responder = current_user
+    
     respond_to do |format|
       if @repair_request.update_attributes(params[:repair_request])
-        format.html { redirect_to @repair_request, notice: 'Repair request was successfully updated.' }
+        format.html { redirect_to repair_requests_path, notice: 'Repair request was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

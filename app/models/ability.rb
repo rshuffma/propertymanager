@@ -9,6 +9,9 @@ class Ability
     else
       if thisuser.has_role? :customer
         can :manage, thisuser
+        can :create, RepairRequest
+        can :create, Payment
+        can :view, Payment
       end
     can :index, :all
     can :create, User

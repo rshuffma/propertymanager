@@ -11,15 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226041151) do
+ActiveRecord::Schema.define(:version => 20130308103710) do
 
   create_table "leases", :force => true do |t|
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "rent"
+    t.integer  "unit_id"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "unit_id"
+  end
+
+  create_table "payment_transactions", :force => true do |t|
+    t.text     "response"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "payment_id"
+  end
+
+  create_table "payments", :force => true do |t|
+    t.string   "ip_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "card_expires_on"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "user_id"
+    t.integer  "lease_id"
+    t.integer  "amount"
   end
 
   create_table "properties", :force => true do |t|

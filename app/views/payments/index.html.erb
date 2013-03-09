@@ -1,0 +1,29 @@
+<h1>Listing payments</h1>
+
+<table>
+  <tr>
+    <th>Amount</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Ip address</th>
+    <th>Card expires on</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+ <% @payments.each do |payment| %>
+  <tr>
+    <td><%= payment.amount %></td>
+    <td><%= payment.first_name %></td>
+    <td><%= payment.last_name %></td>
+    <td><%= payment.ip_address %></td>
+    <td><%= payment.card_expires_on %></td>
+    <td><%= link_to 'Show', payment %></td>
+  </tr>
+ <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Payment', new_payment_path %>
+

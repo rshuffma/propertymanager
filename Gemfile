@@ -40,3 +40,5 @@ gem 'jquery-rails'
 gem 'authlogic'
 
 gem 'cancan'
+
+gem 'activemerchant'

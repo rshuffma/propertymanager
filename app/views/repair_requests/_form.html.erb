@@ -1,3 +1,5 @@
+<% manager = current_user && (current_user.has_role? :admin)%>
+<% renter = current_user && (current_user.has_role? :customer) %>
 <%= form_for(@repair_request) do |f| %>
   <% if @repair_request.errors.any? %>
     <div id="error_explanation">
@@ -15,7 +17,7 @@
     <%= f.label :open_date %><br />
     <%= f.date_select :open_date %>
   </div>
-  <div class="field">
+  <div class="field" style = "display:<%= manager ? 'block' : 'none' %> ">
     <%= f.label :close_date %><br />
     <%= f.date_select :close_date %>
   </div>
@@ -23,17 +25,17 @@
     <%= f.label :request_details %><br />
     <%= f.text_area :request_details %>
   </div>
-  <div class="field">
+  <div class="field" style = "display:<%= manager ? 'block' : 'none' %> ">
     <%= f.label :request_response %><br />
     <%= f.text_area :request_response %>
   </div>
-  <div class="field">
+  <div class="field" style = "display:<%= manager ? 'block' : 'none' %> ">
     <%= f.label :submitter_id %><br />
-    <%= f.number_field :submitter_id %>
+    <%= f.number_field :submitter_id, :value => @submitter %>
   </div>
-  <div class="field">
+  <div class="field" style = "display:<%= manager ? 'block' : 'none' %> ">
     <%= f.label :responder_id %><br />
-    <%= f.number_field :responder_id %>
+    <%= f.number_field :responder_id, :value => @submitter %>
   </div>
   <div class="actions">
     <%= f.submit %>

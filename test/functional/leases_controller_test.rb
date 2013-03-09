@@ -18,7 +18,7 @@ class LeasesControllerTest < ActionController::TestCase
 
   test "should create lease" do
     assert_difference('Lease.count') do
-      post :create, lease: { end_date: @lease.end_date, rent: @lease.rent, start_date: @lease.start_date }
+      post :create, lease: { end_date: @lease.end_date, rent: @lease.rent, start_date: @lease.start_date, unit_id: @lease.unit_id, user_id: @lease.user_id }
     end
 
     assert_redirected_to lease_path(assigns(:lease))
@@ -35,7 +35,7 @@ class LeasesControllerTest < ActionController::TestCase
   end
 
   test "should update lease" do
-    put :update, id: @lease, lease: { end_date: @lease.end_date, rent: @lease.rent, start_date: @lease.start_date }
+    put :update, id: @lease, lease: { end_date: @lease.end_date, rent: @lease.rent, start_date: @lease.start_date, unit_id: @lease.unit_id, user_id: @lease.user_id }
     assert_redirected_to lease_path(assigns(:lease))
   end
 

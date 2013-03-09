@@ -23,6 +23,14 @@
     <%= f.label :rent %><br />
     <%= f.number_field :rent %>
   </div>
+  <div class="field">
+    <%= f.label :unit %><br />
+    <%= f.collection_select :unit_id, Unit.all.collect, :id, :name, :prompt => "Select a Unit" %>
+  </div>
+  <div class="field">
+    <%= f.label :renter %><br />
+    <%= f.collection_select :user_id, User.all.collect, :id, :username, :prompt => "Select a Renter" %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
